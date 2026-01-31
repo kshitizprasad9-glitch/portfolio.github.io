@@ -1,107 +1,225 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+:root {
+  --bg-color: #0d0d15;
+  --terminal-bg: #1a1a2e;
+  --primary-color: #00ff41; /* Matrix Green */
+  --secondary-color: #008F11; /* Darker Green */
+  --highlight: #ff0055; /* Cyberpunk Pink */
+  --text-dim: #aab;
+}
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  cursor: crosshair;
 }
 
 body {
-  background: #e9eef5;
+  margin: 0;
+  padding: 0;
+  font-family: 'VT323', monospace;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  font-size: 22px;
+  overflow-x: hidden;
 }
 
-/* Layout */
-.layout {
+/* CRT Scanline Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* --- START SCREEN --- */
+#start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1000;
   display: flex;
-  min-height: 100vh;
-  animation: fadeIn 1s ease-in;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-out;
+}
+
+.blink-text {
+  animation: blink 1s infinite;
+}
+
+#start-btn {
+  background: transparent;
+  border: 4px solid var(--primary-color);
+  color: var(--primary-color);
+  font-family: 'VT323', monospace;
+  font-size: 2.5rem;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: 0.2s;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+#start-btn:hover {
+  background: var(--primary-color);
+  color: #000;
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* --- MAIN UI --- */
+.game-ui {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
+  opacity: 0;
+  transition: opacity 2s ease-in;
 }
 
 /* Sidebar */
 .sidebar {
-  width: 30%;
-  background: #0f1f4b;
-  color: white;
-  padding: 40px;
-  animation: slideLeft 1s ease;
+  flex: 1;
+  min-width: 300px;
+  background: var(--terminal-bg);
+  border: 2px solid var(--primary-color);
+  padding: 2rem;
+  box-shadow: 5px 5px 0px var(--secondary-color);
+  height: fit-content;
 }
 
-.profile {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+.profile-frame {
+  width: 100%;
+  border: 2px dashed var(--primary-color);
+  padding: 5px;
+  margin-bottom: 1rem;
 }
 
-.subtitle {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
+.profile-pic {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(300%);
 }
 
-.sidebar h3 {
-  margin-top: 25px;
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 2px 2px var(--highlight);
+  line-height: 1;
+}
+
+.level-badge {
+  background: var(--highlight);
+  color: #fff;
+  padding: 2px 8px;
+  font-size: 1rem;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.stat-block {
+  margin-top: 2rem;
+}
+
+.stat-title {
+  border-bottom: 2px solid var(--primary-color);
   margin-bottom: 10px;
+  color: #fff;
 }
 
-.sidebar ul li {
+.stat-list {
+  list-style: none;
+  padding: 0;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 5px;
+  transition: 0.2s;
+}
+
+.stat-item:hover {
+  background: rgba(0, 255, 65, 0.1);
+  transform: translateX(5px);
+}
+
+/* Main Content */
+.main-content {
+  flex: 2;
+  min-width: 320px;
+}
+
+.panel {
+  background: rgba(26, 26, 46, 0.9);
+  border: 1px solid var(--primary-color);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.panel::before {
+  content: "SYSTEM_LOG";
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: var(--bg-color);
+  padding: 0 10px;
   font-size: 0.9rem;
-  margin-bottom: 6px;
-}
-
-/* Content */
-.content {
-  width: 70%;
-  padding: 40px;
-}
-
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  animation: slideUp 0.8s ease forwards;
-}
-
-.delay {
-  animation-delay: 0.3s;
-}
-
-.delay2 {
-  animation-delay: 0.6s;
+  color: var(--text-dim);
 }
 
 h2 {
-  margin-bottom: 12px;
-  color: #0f1f4b;
+  color: var(--highlight);
+  margin-top: 0;
+  font-size: 2rem;
 }
 
-/* Animations */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Quests */
+.quest-item {
+  border: 1px solid var(--secondary-color);
+  margin-bottom: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
 }
 
-@keyframes slideLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.quest-item:hover {
+  background: var(--primary-color);
+  color: #000;
+  box-shadow: 0 0 15px var(--primary-color);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.quest-item::before {
+  content: "[ ]";
+  margin-right: 10px;
+}
+
+.quest-item:hover::before {
+  content: "[X]";
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .game-ui { flex-direction: column; padding: 10px; }
+  h1 { font-size: 2rem; }
 }
