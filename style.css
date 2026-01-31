@@ -108,9 +108,15 @@ body::after {
 }
 
 .profile-pic {
-  width: 100%;
+  width: 100%;           /* Fits the box width */
+  height: 250px;         /* Sets a fixed height */
+  object-fit: cover;     /* Crops the image perfectly so your face isn't stretched */
   display: block;
-  filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(300%);
+  border: 2px solid #00ff41; /* Adds a thin green border */
+  
+  /* I removed the 'filter' line so your natural colors show! */
+  /* If you want it Black & White instead, uncomment the line below: */
+  /* filter: grayscale(100%); */
 }
 
 h1 {
