@@ -324,3 +324,77 @@ a.quest-item {
   50% { clip-path: polygon(100% 60%, 44% 48%, 100% 40%, 100% 0, 0 0, 0 100%, 100% 100%); }
   100% { clip-path: polygon(100% 74%, 44% 48%, 100% 21%, 100% 0, 0 0, 0 100%, 100% 100%); }
 }
+/* --- MARIO BOTTOM STAGE --- */
+
+.mario-stage {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* Space for the animation */
+  z-index: 99; /* On top of everything */
+  pointer-events: none; /* Clicks go through it */
+}
+
+/* The Ground (Bricks) */
+.ground-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #5c2c06; /* Brown dirt */
+  border-top: 4px solid #00bb00; /* Green grass */
+}
+
+/* The Pipe Obstacle */
+.pipe {
+  position: absolute;
+  bottom: 20px; /* Sits on ground */
+  left: 60%; /* Positioned 60% across the screen */
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(90deg, #2ecc71 10%, #27ae60 15%, #2ecc71 80%);
+  border: 2px solid #000;
+  border-bottom: none;
+}
+
+.pipe::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: 50px; /* Pipe cap is wider */
+  height: 10px;
+  background: inherit; /* Matches pipe color */
+  border: 2px solid #000;
+}
+
+/* Mario Animation */
+.mario-run {
+  position: absolute;
+  bottom: 20px; /* Start on ground */
+  left: -50px;
+  height: 45px; /* Adjust size based on your GIF */
+  
+  /* Two animations: Moving Right (Run) + Moving Up (Jump) */
+  animation: runAcross 8s linear infinite, jumpPipe 8s linear infinite;
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+
+/* 1. Move from Left to Right */
+@keyframes runAcross {
+  0% { left: -10%; transform: scaleX(1); } /* Start off screen left */
+  100% { left: 110%; transform: scaleX(1); } /* End off screen right */
+}
+
+/* 2. Jump at the specific moment he hits the pipe (60%) */
+@keyframes jumpPipe {
+  0%, 55% { bottom: 20px; } /* Run on ground */
+  
+  58% { bottom: 80px; } /* JUMP UP! */
+  62% { bottom: 20px; } /* Land back down */
+  
+  100% { bottom: 20px; }
+}
