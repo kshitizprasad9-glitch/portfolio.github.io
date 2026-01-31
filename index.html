@@ -8,14 +8,106 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="start-screen">...</div>
-  <div class="game-ui" id="main-interface">...</div>
+
+  <div id="start-screen">
+    <div style="text-align:center; margin-bottom: 40px;">
+      <h1 style="font-size: 4rem; color: #00ff41; text-shadow: 0 0 20px #00ff41;">SYSTEM ONLINE</h1>
+      <p class="blink-text" style="color: #00ff41; animation: blink 1s infinite;">INITIALIZING PORTFOLIO PROTOCOL...</p>
+    </div>
+    <button id="start-btn" onclick="enterGame()">PRESS START</button>
+  </div>
+
+  <div class="game-ui" id="main-interface">
+    
+    <aside class="sidebar">
+      <div class="profile-frame">
+        <img src="./Kshitiz Prasad _ Portfolio_files/0" alt="Avatar" class="profile-pic">
+      </div>
+      
+      <h1>Kshitiz Raj<br>Prasad <span class="level-badge">LVL 1</span></h1>
+      <p style="color: #aab;">CLASS: B.Tech CSE (AI & ML)<br>GUILD: Lovely Professional Univ.</p>
+
+      <div class="stat-block">
+        <h3 class="stat-title">>> SKILL TREE</h3>
+        <ul class="stat-list">
+          <li class="stat-item"><span>Python</span> <span>[Basics]</span></li>
+          <li class="stat-item"><span>Java</span> <span>[School Lvl]</span></li>
+          <li class="stat-item"><span>HTML & CSS</span> <span>[Standard]</span></li>
+          <li class="stat-item"><span>Git/GitHub</span> <span>[Enabled]</span></li>
+          <li class="stat-item"><span>Figma</span> <span>[UI Basics]</span></li>
+        </ul>
+      </div>
+
+      <div class="stat-block">
+        <h3 class="stat-title">>> COMMUNICATION</h3>
+        <ul class="stat-list">
+          <li class="stat-item">English</li>
+          <li class="stat-item">Hindi</li>
+          <li class="stat-item">Bhojpuri</li>
+          <li class="stat-item">Nepali</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      
+      <section class="panel">
+        <h2>CHARACTER ORIGIN</h2>
+        <p>
+          <strong>>> CURRENT CAMPAIGN:</strong> B.Tech CSE (AI & ML)<br>
+          <strong>>> LOCATION:</strong> Lovely Professional University<br>
+          <strong>>> TIMELINE:</strong> 2025 – 2029 (Status: Pursuing)
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>ACTIVE QUESTS (Projects)</h2>
+        <div class="quest-list">
+          <div class="quest-item" onclick="playSound()">Beginner GitHub Practice Projects</div>
+          <div class="quest-item" onclick="playSound()">Python Programs for Logic Building</div>
+          <div class="quest-item" onclick="playSound()">Basic HTML Page Structures</div>
+          <div class="quest-item" onclick="playSound()">GitHub Version Control & Hosting</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>ACHIEVEMENTS</h2>
+        <div class="quest-list">
+          <div class="quest-item" style="border-color: #ff0055;">
+            GenAI Powered Data Analytics – TATA Forage
+          </div>
+          <div class="quest-item" style="border-color: #ff0055;">
+            Environment Day Trek Participation
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <script>
-    // Keep the script here!
     function enterGame() {
-       // ... existing javascript ...
+      const screen = document.getElementById('start-screen');
+      const ui = document.getElementById('main-interface');
+      
+      // Visual Console Log
+      console.log("AUDIO: START_GAME.WAV");
+      
+      // Fade out effect
+      screen.style.opacity = '0';
+      
+      // Wait 0.8 seconds for fade, then hide screen and show UI
+      setTimeout(() => {
+        screen.style.display = 'none';
+        ui.style.opacity = '1';
+      }, 800);
+    }
+
+    function playSound() {
+      console.log("AUDIO: CLICK.WAV");
+      // Add real audio here later if you want
     }
   </script>
+
 </body>
 </html>
