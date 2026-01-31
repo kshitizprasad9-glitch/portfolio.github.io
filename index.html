@@ -8,12 +8,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="pacman-container">
     <div class="pacman-track">
       <div class="dots"></div>
       <div class="pacman-wrapper">
         <div class="pacman"></div>
-        <div class="eaten-path"></div> </div>
+        <div class="eaten-path"></div>
+      </div>
     </div>
   </div>
 
@@ -63,7 +65,7 @@
         <h2>CHARACTER ORIGIN</h2>
         <p>
           <strong>>> CURRENT CAMPAIGN:</strong> B.Tech CSE (AI & ML)<br>
-          <strong>>> LOCATION:</strong> Lovely Professional University, Punjab<br>
+          <strong>>> LOCATION:</strong> Lovely Professional University<br>
           <strong>>> TIMELINE:</strong> 2025 – 2029 (Status: Pursuing)
         </p>
       </section>
@@ -71,29 +73,32 @@
       <section class="panel">
         <h2>ACTIVE QUESTS (Projects)</h2>
         <div class="quest-list">
-          <div class="quest-item" onclick="playSound()">Beginner GitHub Practice Projects</div>
-          <div class="quest-item" onclick="playSound()">Python Programs for Logic Building</div>
-          <div class="quest-item" onclick="playSound()">Basic HTML Page Structures</div>
-          <div class="quest-item" onclick="playSound()">GitHub Version Control & Hosting</div>
+          <a href="#" class="quest-item" onclick="playSound()">Beginner GitHub Practice Projects</a>
+          <a href="#" class="quest-item" onclick="playSound()">Python Programs for Logic Building</a>
+          <a href="#" class="quest-item" onclick="playSound()">Basic HTML Page Structures</a>
+          <a href="#" class="quest-item" onclick="playSound()">GitHub Version Control & Hosting</a>
         </div>
       </section>
 
       <section class="panel">
         <h2>ACHIEVEMENTS</h2>
         <div class="quest-list">
-          
-          <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_68be914bf96d5e8bd46a0070_1757358433245_completion_certificate.pdf" target="_blank" class="quest-item" style="border-color: #ff0055;">
+          <a href="#" target="_blank" class="quest-item" style="border-color: #ff0055;">
             GenAI Powered Data Analytics – TATA Forage
           </a>
-
-          <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_68be914bf96d5e8bd46a0070_1757358433245_completion_certificate.pdf" target="_blank" class="quest-item" style="border-color: #ff0055;">
+          <a href="#" target="_blank" class="quest-item" style="border-color: #ff0055;">
             Environment Day Trek Participation
           </a>
-
         </div>
       </section>
 
     </main>
+  </div>
+
+  <div class="mario-stage">
+    <div class="pipe"></div>
+    <img src="mario.gif" class="mario-run" alt="Mario">
+    <div class="ground-layer"></div>
   </div>
 
   <script>
@@ -101,13 +106,13 @@
       const screen = document.getElementById('start-screen');
       const ui = document.getElementById('main-interface');
       
-      // Visual Console Log
+      // Play fake sound in console
       console.log("AUDIO: START_GAME.WAV");
       
-      // Fade out effect
+      // 1. Hide the start screen
       screen.style.opacity = '0';
       
-      // Wait 0.8 seconds for fade, then hide screen and show UI
+      // 2. Wait 0.8s, then remove it and show the game
       setTimeout(() => {
         screen.style.display = 'none';
         ui.style.opacity = '1';
@@ -116,14 +121,7 @@
 
     function playSound() {
       console.log("AUDIO: CLICK.WAV");
-      // Add real audio here later if you want
     }
-    <div class="mario-stage">
-      <div class="pipe"></div>
-    <img src="mario.gif" class="mario-run" alt="Mario">
-    
-    <div class="ground-layer"></div>
-  </div>
   </script>
 
 </body>
