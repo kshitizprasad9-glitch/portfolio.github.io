@@ -223,3 +223,10 @@ h2 {
   .game-ui { flex-direction: column; padding: 10px; }
   h1 { font-size: 2rem; }
 }
+/* Add this to the bottom of style.css */
+a.quest-item {
+  display: block;         /* Makes the link a full box */
+  text-decoration: none;  /* Removes the underline */
+  color: inherit;         /* Keeps the text color correct */
+  font-family: 'VT323', monospace; /* Ensures the retro font stays */
+}
